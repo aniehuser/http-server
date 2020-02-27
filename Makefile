@@ -28,14 +28,12 @@ MAIN_PROJECT_OBJS = $(addprefix $(OBJ)/,\
 			$(PROJECT_OBJS))
 
 
- .PHONY: all
+ .PHONY: all build dirs clean
  all: build
 
-.PHONY: build
 build: dirs $(MAIN_PROJECT_OBJS)
 	$(CXX) -o $(BIN) $(MAIN_PROJECT_OBJS)
 
- .PHONY: dirs
  dirs: $(OBJ) $(TEST_OBJ) $(BIN_DIR)
 
 $(OBJ):
@@ -50,10 +48,5 @@ $(BIN_DIR):
 $(OBJ)/%.o: %.cc
 	$(CXX) -c $(CFLAGS) $< -o $@
 
-# $(OBJ)/%.o: %.cc
-# 	$(CXX) $(CFLAGS) $< -o $@
-
-.PHONY: clean
 clean:
 	rm -rf $(OBJ) $(TEST_OBJ) $(BIN_DIR) *.o 
-
