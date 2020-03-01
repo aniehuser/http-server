@@ -32,7 +32,8 @@ BIN = $(BIN_DIR)/out
 TEST_BIN = $(BIN_DIR)/test_out
 TEST_OBJ = $(TEST_DIR)/obj
 PROJECT_SRC = \
-			TestInclude.cc
+			TestInclude.cc \
+			TcpServer.cc
 PROJECT_OBJS = $(patsubst %.cc,$(OBJ)/%.o,$(PROJECT_SRC))
 MAIN_PROJECT_OBJS = $(addprefix $(OBJ)/,\
 			main.o) \

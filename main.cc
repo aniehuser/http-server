@@ -5,41 +5,31 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <cstring>
+#include <string>
 #include "TestInclude.h"
+#include "TcpServer.h"
 
 #define MAXLINE 255
+
+char * mock_handler(int connfd) {
+    // std::string str = "Handler Return String\n";
+    return (char *) "Handler Return String\n";
+}
+
 
 int main(int argc, char **argv) {
     int ret = printSomething("Hello World!");
 
-    int                 listenfd, connfd;
-    struct sockaddr_in  servaddr;
-    char                buff[MAXLINE];
-    time_t              ticks;
-
-    listenfd = socket(AF_INET, SOCK_STREAM, 0);
-
-    bzero(&servaddr, sizeof(servaddr));
-    servaddr.sin_family      = AF_INET;
-    servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    servaddr.sin_port        = htons(8080);
-
-    if(bind(listenfd, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0) {
-        printSomething("bind error");
-    }
-
-    listen(listenfd, 5);
-
-    for ( ; ; ) {
-        connfd = accept(listenfd, NULL, NULL);
-
-        ticks = time(NULL);
-        snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
-        write(connfd, buff, strlen(buff));
-
-        close(connfd);
-        break;
-    }
+    TcpServer * serv = new TcpServer(INADDR_ANY, 8080);
+    printSomething("constructed");
+    serv->open();
+    printSomething("openeded");
+    serv->start(mock_handler, 10);
+    printSomething("listnededd");
+    serv->close();
+    printSomething("closededldeing");
+    delete serv;
+    printSomething("fin dleeted");
 
     return ret;
 }
