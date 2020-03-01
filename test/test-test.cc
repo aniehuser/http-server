@@ -12,7 +12,7 @@ TEST(StrCompare, CStrEqual) {
 }
 
 TEST(StrCompare, CStrNotEqual) {
-    EXPECT_STREQ(expectVal, actualValFalse);
+    EXPECT_STREQ(expectVal, actualValTrue);
 }
 
 TEST(TestInclude, ret0) {
@@ -20,5 +20,5 @@ TEST(TestInclude, ret0) {
 }
 
 TEST(NewSuite, bleh) {
-    EXPECT_NE(1, 2);
+    EXPECT_NE(1, 0);
 }

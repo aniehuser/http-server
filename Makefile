@@ -33,10 +33,10 @@ TEST_BIN = $(BIN_DIR)/test_out
 TEST_OBJ = $(TEST_DIR)/obj
 PROJECT_SRC = \
 			TestInclude.cc
-PROJECT_OBJS = $(patsubst %.cc,%.o,$(PROJECT_SRC))
+PROJECT_OBJS = $(patsubst %.cc,$(OBJ)/%.o,$(PROJECT_SRC))
 MAIN_PROJECT_OBJS = $(addprefix $(OBJ)/,\
-			main.o \
-			$(PROJECT_OBJS))
+			main.o) \
+			$(PROJECT_OBJS)
 
 TEST_PROJ_SRC = \
 			test-test.cc
