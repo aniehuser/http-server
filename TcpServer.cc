@@ -6,6 +6,7 @@
 #include <netinet/in.h>
 #include <cstring>
 #include "TcpServer.h"
+#include "TestInclude.h"
 
 void Close(int fd);
 void SysExit(int err);
@@ -19,7 +20,6 @@ TcpServer::TcpServer(uint32_t inaddr, uint16_t inport) {
 }
 
 TcpServer::~TcpServer() {
-    delete buff;
 }
 
 void TcpServer::open() {
@@ -48,11 +48,12 @@ void TcpServer::start(char * (*handler)(int), int backlog) {
     listening = true;
     // Threadify/selectify/pollify ?
     for( ; ; ) {
-        connfd = accept(listenfd, NULL, NULL);
+        // connfd = accept(listenfd, NULL, NULL);
         buff = handler(connfd);
-        write(connfd, buff, strlen(buff));
+        printSomething(buff);
+        // write(connfd, buff, strlen(buff));
 
-        Close(connfd);
+        // Close(connfd);
         break;
     }
     listening = false;
