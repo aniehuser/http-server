@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <sstream>
 #include <iostream>
 #include <unistd.h>
 #include <sys/types.h>
@@ -22,7 +23,7 @@ TcpServer::TcpServer(uint32_t inaddr, uint16_t inport) {
 TcpServer::~TcpServer() {
 }
 
-void TcpServer::open() {
+void TcpServer::start(char * (*handler)(int), int backlog) {
     if((listenfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         std::cout << "Socket Create Failure" << std::endl;
         SysExit(-1);
@@ -31,13 +32,6 @@ void TcpServer::open() {
     if(bind(listenfd, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0) {
         std::cout << "Bind Failure" << std::endl;
         SysExit(-1);
-    }
-}
-
-void TcpServer::start(char * (*handler)(int), int backlog) {
-    if(listening) {
-        std::cout << "Listen fd exists" << std::endl;
-        return;
     }
 
     if(listen(listenfd, backlog) < 0) {
@@ -59,7 +53,7 @@ void TcpServer::start(char * (*handler)(int), int backlog) {
     listening = false;
 }
 
-void TcpServer::close() {
+void TcpServer::stop() {
     // TODO after threadify/pollify/selectify
     Close(connfd);
     Close(listenfd);

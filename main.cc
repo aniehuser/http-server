@@ -8,6 +8,8 @@
 #include <string>
 #include "TestInclude.h"
 #include "TcpServer.h"
+#include <map>
+#include "Protocol.h"
 
 #define MAXLINE 255
 
@@ -19,14 +21,13 @@ char * mock_handler(int connfd) {
 
 int main(int argc, char **argv) {
     int ret = printSomething("Hello World!");
-
+    std::cout << constant::code::CONTINUE << std::endl;
+    auto sdf = constant::reason[constant::code::CONTINUE];
     TcpServer * serv = new TcpServer(INADDR_ANY, 8080);
     printSomething("constructed");
-    serv->open();
-    printSomething("openeded");
     serv->start(mock_handler, 10);
     printSomething("listnededd");
-    serv->close();
+    serv->stop();
     printSomething("closededldeing");
     delete serv;
     printSomething("fin dleeted");

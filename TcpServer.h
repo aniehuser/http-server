@@ -11,9 +11,8 @@ class TcpServer {
 public:
     TcpServer(uint32_t inaddr, uint16_t inport);
     ~TcpServer();
-    void open();
     void start(char * (*handler)(int), int backlog);
-    void close();
+    void stop();
     bool isListening();
 private:
     int listenfd, connfd;
@@ -21,5 +20,8 @@ private:
     char * buff;
     bool listening;
 };
+
+void Close(int);
+void SysExit(int);
 
 #endif /* TCPSERVER_H */

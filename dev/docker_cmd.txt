@@ -1,3 +1,3 @@
 # windows docker command
-docker pull gcc:latest
-docker run --rm --name gcc-dev -v C:\Users\tnieh\code\http-server:/usr/src/http-server -it gcc /bin/sh -c 'cd /usr/src/http-server'
+ docker run --rm --name gcc-dev -v C:\Users\tnieh\code\http-server:/usr/src/http-server -it http-server:1.0 bash
+ 

@@ -40,7 +40,8 @@ MAIN_PROJECT_OBJS = $(addprefix $(OBJ)/,\
 			$(PROJECT_OBJS)
 
 TEST_PROJ_SRC = \
-			test-test.cc
+			test-test.cc \
+			TcpServerTest.cc
 TEST_PROJ_OBJS = $(patsubst %.cc,%.o,$(TEST_PROJ_SRC))
 TEST_MAIN_PROJ_OBJS = $(addprefix $(TEST_OBJ)/,\
 			main.o \
