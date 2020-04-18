@@ -12,8 +12,9 @@ Lexer::next_method() {
     eat_lws();
     std::string str = read_next_string(NULL);
     if(str == "GET") return Lexeme(Token::GET, str);
-    else if(str == "POST") return Lexeme(Token::POST, str);
-    else if(str == "HEAD") return Lexeme(Token::HEAD, str);
+    """ONLY SUPPORT GET FOR NOW"""
+    // else if(str == "POST") return Lexeme(Token::POST, str);
+    // else if(str == "HEAD") return Lexeme(Token::HEAD, str);
     else { /* ERROR return 501*/}
 }
 
@@ -42,6 +43,7 @@ Lexer::next_uri() {
         read();
         tmp = peek();
         if(tmp == '\n') {
+            read()
             return Lexeme(Token::CRLF, "\r\n");
         } else {
             return Lexeme(Token::CR, "\r");

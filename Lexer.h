@@ -1,6 +1,8 @@
 #include <string>
 #include <sstream>
 
+#include "Lexeme.h"
+
 class Lexer {
 public:
     Lexer(std::istream &init_in);
@@ -16,7 +18,7 @@ private:
     char read();
     void eat_lws();
     char eof();
-    bool hex();
+    bool is_hex();
     Lexeme single_char_lexeme(Token token);
     string read_next_string(char stop);
     

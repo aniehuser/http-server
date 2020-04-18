@@ -44,7 +44,7 @@ void TcpServer::start(char * (*handler)(int), int backlog) {
     for( ; ; ) {
         connfd = accept(listenfd, NULL, NULL);
 
-        while(read)
+        while(read);
 
         buff = handler(connfd);
         printSomething(buff);
