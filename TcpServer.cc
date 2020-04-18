@@ -42,7 +42,10 @@ void TcpServer::start(char * (*handler)(int), int backlog) {
     listening = true;
     // Threadify/selectify/pollify ?
     for( ; ; ) {
-        // connfd = accept(listenfd, NULL, NULL);
+        connfd = accept(listenfd, NULL, NULL);
+
+        while(read)
+
         buff = handler(connfd);
         printSomething(buff);
         // write(connfd, buff, strlen(buff));

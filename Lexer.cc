@@ -14,8 +14,90 @@ Lexer::next_method() {
     if(str == "GET") return Lexeme(Token::GET, str);
     else if(str == "POST") return Lexeme(Token::POST, str);
     else if(str == "HEAD") return Lexeme(Token::HEAD, str);
-    else { /* ERROR reutrn 501*/}
+    else { /* ERROR return 501*/}
+}
 
+Lexeme
+Lexer::next_uri() {
+    eat_lws();
+    char tmp = peek();
+    
+    if(tmp == '%') {
+        std::ostringstream oss;
+        read(); // remove '%'
+        for(int i=0; i<2; i++) {
+            tmp = peek();
+            if(is_hex(tmp)) {
+                oss << read();
+            } else {
+                 /* SOME ERROR, unsafe character used inappropriately*/
+            }
+        }
+        return Lexeme(Token::ESCAPE, oss.str());
+    } else if((tmp >= 'a' && <= 'z') || (tmp >= 'A' && tmp <= 'Z')) {
+        return single_char_lexeme(Token::ALPHA);
+    } else if(tmp >= 0 && tmp <= 9) {
+        return single_char_lexeme(Token::DIGIT);
+    } else if(tmp == '\r') {
+        read();
+        tmp = peek();
+        if(tmp == '\n') {
+            return Lexeme(Token::CRLF, "\r\n");
+        } else {
+            return Lexeme(Token::CR, "\r");
+        }
+    } 
+
+    switch(tmp) {
+        case '\n':
+            return single_char_lexem(Token::LF);
+            break;
+        case ' ':
+            return single_char_lexem(Token::SLASH);
+            break;
+        case '':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+            break;
+        case ';':
+            return single_char_lexem(Token::SEMICOLON);
+        case '"':
+        case '#':
+        case '<':
+        case '>':
+        
+            break;
+        
+    }
 }
 
 void
@@ -51,3 +133,15 @@ Lexer::read_next_string(char stop) {
     return oss.str();
 }
 
+Lexeme
+Lexer::single_char_lexeme(Token token) {
+    std::string str(1, read());
+    return Lexeme(token, str);
+}
+
+bool
+Lexer::is_hex(char c) {
+    return (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F') || (c >= '0' && c <= '9')
+}
+
+bool Lexer::is
