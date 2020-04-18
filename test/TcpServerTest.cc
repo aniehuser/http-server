@@ -1,7 +1,6 @@
 #include "TcpServer.h"
 #include "gtest/gtest.h"
 #include <stdint.h>
-#include "Protocol.h"
 
 
 TEST(WrapperDeathTest, Close) {

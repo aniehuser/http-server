@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 #include "TestInclude.h"
+#include "Token.h"
 #include <string>
+#include <iostream>
 using std::string;
 
 const char *actualValTrue  = "hello gtest";
@@ -21,4 +23,11 @@ TEST(TestInclude, ret0) {
 
 TEST(NewSuite, bleh) {
     EXPECT_NE(1, 0);
+}
+
+TEST(Adhoc, adhoc) {
+    enum Token token = Token::EQUAL;
+    std::cout << to_string(token) << std::endl;
+
+
 }
