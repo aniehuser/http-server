@@ -6,14 +6,16 @@ namespace constant
 {
 namespace method
 {
-    static const uint8_t GET        = 0x01;  // HTTP/0.9 and greater
-    static const uint8_t HEAD       = 0x02;  // HTTP/1.0 and greater
-    static const uint8_t POST       = 0x04;
-    static const uint8_t PUT        = 0x08;  // HTTP/1.1 and greater
-    static const uint8_t DELETE     = 0x10;
-    static const uint8_t TRACE      = 0x20;
-    static const uint8_t OPTIONS    = 0x40;
-    static const uint8_t CONNECT    = 0x80;
+    static const uint16_t GET       = 0x0001;  // HTTP/0.9 and greater
+    static const uint16_t HEAD      = 0x0002;  // HTTP/1.0 and greater
+    static const uint16_t POST      = 0x0004;
+    static const uint16_t PUT       = 0x0008;  // HTTP/1.1 and greater
+    static const uint16_t DELETE    = 0x0010;
+    static const uint16_t TRACE     = 0x0020;
+    static const uint16_t OPTIONS   = 0x0040;
+    static const uint16_t CONNECT   = 0x0080;
+    static const uint16_t PATCH     = 0x0100;
+    static const uint16_t _MASK     = 0xfe00;
 }
 namespace ver
 {
@@ -21,6 +23,7 @@ namespace ver
     static const uint8_t v1_0       = 0x02;
     static const uint8_t v1_1       = 0x04;
     static const uint8_t v2_0       = 0x08;
+    static const uint8_t _MASK      = 0xf0;
 }
 // Status codes may need some rethinking
 namespace code
@@ -95,7 +98,7 @@ static std::map<uint16_t, std::string> reason {
 
 struct http_request {
     const uint8_t version;
-    const uint8_t method;
+    const uint16_t method;
     const char * uri;
     const char ** headers;
     const char * body;
