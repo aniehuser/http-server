@@ -2,7 +2,7 @@
 
 /* Provide an output operator allowing Tokens to be outputted to std::cout
  or to any other ostream using << */
-std::ostream& operator<<(std::ostream &out, Token token) {
+std::ostream& operator<<(std::ostream& out, Token token) {
     out << to_string(token);
     return out;
 }

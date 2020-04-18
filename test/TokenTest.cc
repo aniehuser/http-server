@@ -1,7 +1,9 @@
 #include "gtest/gtest.h"
-#include "Token.h"
+
 #include <string>
 #include <sstream>
+
+#include "Token.h"
 
 void ostream_test(const char* expected, enum Token token);
 
@@ -21,7 +23,7 @@ TEST(TokenTests, ostream) {
 } 
 
 void ostream_test(const char* expected, enum Token token) {
-    std::stringstream ss;
+    std::ostringstream ss;
     ss << token;
     EXPECT_STREQ(expected, ss.str().c_str());
 }

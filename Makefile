@@ -34,7 +34,8 @@ TEST_OBJ = $(TEST_DIR)/obj
 PROJECT_SRC = \
 			TestInclude.cc \
 			TcpServer.cc   \
-			Token.cc
+			Token.cc \
+			Lexeme.cc
 PROJECT_OBJS = $(patsubst %.cc,$(OBJ)/%.o,$(PROJECT_SRC))
 MAIN_PROJECT_OBJS = $(addprefix $(OBJ)/,\
 			main.o) \
@@ -43,7 +44,8 @@ MAIN_PROJECT_OBJS = $(addprefix $(OBJ)/,\
 TEST_PROJ_SRC = \
 			test-test.cc \
 			TcpServerTest.cc \
-			TokenTest.cc
+			TokenTest.cc \
+			LexemeTest.cc
 TEST_PROJ_OBJS = $(patsubst %.cc,%.o,$(TEST_PROJ_SRC))
 TEST_MAIN_PROJ_OBJS = $(addprefix $(TEST_OBJ)/,\
 			main.o \

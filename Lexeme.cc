@@ -1,6 +1,6 @@
 #include "Lexeme.h"
 
-std::ostream& operator<<(std:ostream& out, const Lexeme& lex) {
+std::ostream& operator<<(std::ostream& out, const Lexeme& lex) {
     out << lex.token << " '" << lex.text << "' ";
     return out;
 }

@@ -3,7 +3,6 @@
 
 #include <ostream>
 #include <string>
-#include <iostream>
 
 enum class Token {
 #define x(ident) ident,
@@ -13,8 +12,7 @@ enum class Token {
 
 /* Provide an output operator allowing Tokens to be outputted to std::cout
  or to any other ostream using << */
-std::ostream& operator<<(std::ostream &out, Token token);
-
+std::ostream& operator<<(std::ostream& out, Token token);
 std::string to_string(Token token);
 
 #endif /* TOKENS_H */
